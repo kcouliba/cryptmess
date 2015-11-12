@@ -1,9 +1,8 @@
-/*
-#page-decrypt, #page-encrypt {
+/* To avoid flashing at app opening */
+.page-content, #page-decrypt, #page-encrypt, body > header .back-navigate {
     display: none;
     visibility: hidden;
 }
-*/
 
 html {
     margin: 0px;
@@ -120,7 +119,7 @@ body > #app-footer {
     resize: none;
     display: inline-block;
     margin: 10px 5px 4px 5px;
-    padding: 0px;
+    padding: 5px;
     width: 94%;
     height: 180px;
 }

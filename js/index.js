@@ -8,7 +8,7 @@ var cryptmessApp = {
     /** sub classes **/
     // Page sub class
     Page: {
-        id: -1,
+        id: 0,
         name: "",
         active: false,
 
@@ -16,7 +16,7 @@ var cryptmessApp = {
         new: function(name, active) {
             var self = Object.create(this);
 
-            self.id = self.pageCount++;
+            self.id = cryptmessApp.Page.id++;
             self.name = name;
             self.active = active || false;
             return (self);
@@ -42,16 +42,12 @@ var cryptmessApp = {
     init: function() {
 //        this.hideUI();
         this.bindEvents();
-        this.pages[
-            this.Page.new("home", true),
-            this.Page.new("decrypt"),
-            this.Page.new("encrypt")
-        ];
     },
 
     // Adds a page to the app
     addPage: function(name, active) {
         this.pages.push(this.Page.new(name, active));
+        this.pageCount = this.pages.length;
     },
 
     // Bind Event Listeners
