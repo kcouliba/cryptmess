@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+Customize this policy to fit your own app's needs. For more guidance, see:
+https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+Some notes:
+* gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+* https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+* Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+* Enable inline JS: add 'unsafe-inline' to default-src
+-->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>CryptMess</title>
+    </head>
+    <body>
+        <header id="app-header">
+            <button class="back-navigate"><</button>
+            <h1>cryptmess</h1>
+            <button class="dropdown-menu">+</button>
+        </header>
+        <div id="page-home" class="page-content">
+            <header class="page-header"><h1>home</h1></header>
+            <div class="page-top">
+                
+            </div>
+            <div class="page-middle">
+                <a href="#page-encrypt">encrypt a message</a>
+                <a href="#page-decrypt">decrypt a message</a>
+            </div>
+            <div class="page-bottom">
+                
+            </div>
+        </div>
+        <div id="page-decrypt" class="page-content">
+            <header class="page-header"><h1>decrypt</h1></header>
+            <div class="page-top">
+                <textarea class="cryptedMessage" cols="50" placeholder="enter received crypted message here" required></textarea>
+            </div>
+            <div class="page-middle">
+                <p>enter received key</p>
+                <input class="key" type="password" maxlength="20" />
+                <button class="showKey" type="button">show</button>
+                <button class="goDecrypt" type="button">decrypt</button>
+            </div>
+            <div class="page-bottom">
+                <textarea class="message" cols="50" contenteditable="false" placeholder="message" readonly disabled></textarea>
+            </div>
+        </div>
+        <div id="page-encrypt" class="page-content">
+            <header class="page-header"><h1>encrypt</h1></header>
+            <div class="page-top">
+                <textarea class="message" cols="50" placeholder="enter your message" required></textarea>
+            </div>
+            <div class="page-middle">
+                <p>enter a key</p>
+                <input class="key" type="password" maxlength="20" />
+                <button class="showKey" type="button">show</button>
+                <button class="goCrypt" type="button">go crypt</button>
+                <button class="send">Send</button>
+            </div>
+            <div class="page-bottom">
+                <textarea class="cryptedMessage" cols="50" contenteditable="false" placeholder="Crypted message" readonly disabled></textarea>
+            </div>
+        </div>
+        <footer id="app-footer"></footer>
+        <!--        <script type="text/javascript" src="cordova.js"></script>-->
+        <script type="text/javascript" src="js/crypt.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>
