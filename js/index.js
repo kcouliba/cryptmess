@@ -40,6 +40,7 @@ var cryptmessApp = {
     /** methods **/
     // Initialization
     init: function() {
+//        this.hideUI();
         this.bindEvents();
         this.pages[
             this.Page.new("home", true),
@@ -165,9 +166,11 @@ var cryptmessApp = {
         var self = this;
         
         document.getElementsByClassName('back-navigate')[0].addEventListener('click', function() {
+            // .pop() returns the content of the poped element
+            // here, the previous page name
             if (self.pageHistory.length > 1) {
-                self.navigate(self.pageHistory[self.pageHistory.length - 2]);
-                self.pageHistory.pop();
+                self.pageHistory.pop(); // pops the current page
+                self.navigate(self.pageHistory.pop()); // pops previous page since navigate method will add it to history
             }
         });
     },
@@ -187,9 +190,9 @@ var cryptmessApp = {
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    // Unused
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+//        this.showUI();
+//        app.receivedEvent('deviceready');
     },
 
     // Navigate through indexed pages
@@ -204,6 +207,7 @@ var cryptmessApp = {
                 this.pages[i].hide();
             }
         }
+        this.update();
     },
 
     // Update DOM on a Received Event
@@ -217,6 +221,28 @@ var cryptmessApp = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+    },
+    
+    hideUI : function() {
+        document.getElementsByTagName('body')[0].style.display = "none";
+        document.getElementsByTagName('body')[0].style.visibility = "hidden";
+    },
+    
+    showUI : function() {
+        document.getElementsByTagName('body')[0].style.display = "";
+        document.getElementsByTagName('body')[0].style.visibility = "";
+    },
+    
+    // Updates ui elements
+    update: function() {
+        // Shows or hide the back navigating button
+        if (this.pageHistory.length <= 1) {
+            document.getElementsByClassName('back-navigate')[0].style.display = "none";
+            document.getElementsByClassName('back-navigate')[0].style.visibility = "hidden";
+        } else {
+            document.getElementsByClassName('back-navigate')[0].style.display = "";
+            document.getElementsByClassName('back-navigate')[0].style.visibility = "";
+        }
     }
 };
 
